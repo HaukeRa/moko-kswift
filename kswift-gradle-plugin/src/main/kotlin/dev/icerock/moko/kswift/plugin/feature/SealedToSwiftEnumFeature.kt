@@ -144,8 +144,9 @@ class SealedToSwiftEnumFeature(
         sealedCaseClass: KmClass
     ): EnumCase {
         val kmClass = featureContext.clazz
-        val name: String = if (subclassName.startsWith(kmClass.name)) {
-            subclassName.removePrefix(kmClass.name).removePrefix(".")
+        val commonPrefix = subclassName.commonPrefixWith(kmClass.name)
+        val name: String = if (commonPrefix.isNotEmpty()) {
+            subclassName.removePrefix(commonPrefix).removePrefix(".")
         } else subclassName
         val decapitalizedName: String = name.decapitalize(Locale.ROOT)
 
