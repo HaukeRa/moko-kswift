@@ -1,0 +1,5 @@
+jdk:
+  - openjdk8
+install:
+   - ./gradlew -p kswift-gradle-plugin clean publishToMavenLocal
+   - ./gradlew publishToMavenLocal -DIS_MAIN_HOST=true
